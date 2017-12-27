@@ -1,8 +1,8 @@
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app) {
-    app.get('/api', function (req, res) {
-        if (!req.query.phone || !req.query.text || !req.query.password) {
+    app.get('/:collection/api', function (req, res) {
+        if (!req.query.phone || !req.query.text) {
             res.statusCode = 400;
             res.send({error: 400});
         } else {
@@ -11,7 +11,7 @@ module.exports = function(app) {
                 phone: req.query.phone,
                 text: req.query.text
             };
-            req.db.collection(req.query.password).insertOne(message, function (err, result) {
+            req.db.collection(req.params.collection).insertOne(message, function (err, result) {
                 if (err) throw err;
                 res.send(result.ops[0]);
             });
