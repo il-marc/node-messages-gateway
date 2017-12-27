@@ -29,7 +29,7 @@
                     '<div class="panel-body">' +
                     '<button type="button" class="close" aria-label="Close" onclick="deleteMessage(\''+message._id+'\')">' +
                     '<span aria-hidden="true">&times;</span></button>' +
-                    message.text +
+                    message.text.replace(/\n/g, '<br />') +
                     '</div>' +
                     '<div class="panel-footer">' +
                     '<span class="label label-default">'+message.phone+'</span> ' +
